@@ -34,6 +34,7 @@ function clickLvl1(e) {
     var view = choices[choice];
     view.lvl = 2;
     $('#lvl2').html(Mustache.render($('#questiontpl').html(), view));
+    $('[data-mtgclass-lvl="2"]').on('click', clickLvl2);
 }
 function clickLvl2(e) {
     $('[data-mtgclass-lvl="2"]').removeClass('active');
@@ -119,6 +120,7 @@ function clickLvl2(e) {
     var view = choices[choice];
     view.lvl = 3;
     $('#lvl3').html(Mustache.render($('#questiontpl').html(), view));
+    $('[data-mtgclass-lvl="3"]').on('click', clickLvl3);
 }
 function clickLvl3(e) {
     $('[data-mtgclass-lvl="3"]').removeClass('active');
