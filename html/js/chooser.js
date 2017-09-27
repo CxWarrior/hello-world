@@ -40,6 +40,7 @@ function clickLvl2(e) {
     $(e.target).addClass('active');
     var pos = 1 + e.target.attributes.href.value.indexOf('#');
     var choice = e.target.attributes.href.value.substring(pos);
+    $('#lvl2').html(Mustache.render($('#questiontpl').html(), view));
     $('#lvl3').html('');
     $('#lvl4').html('');
     var choices ={};
