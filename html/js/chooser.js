@@ -27,7 +27,7 @@ function clickLvl1(e) {
         question:'In a battle of Vikings versus Ninjas, you would choose to be:',
         buttons: [
             {hash:'viking',label:'A Viking'},
-            {hash:'ninja',label:'A Ninja'},
+            {hash:'ninjas',label:'A Ninja'},
             {hash:'hire',label:'For Hire'}
         ]
     };
