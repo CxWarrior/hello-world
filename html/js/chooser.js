@@ -5,7 +5,6 @@ function clickLvl1(e) {
     var choice = e.target.attributes.href.value.substring(pos);
     $('#lvl2').html('');
     $('#lvl3').html('');
-    $('#lvl4').html('');
     var choices = {};
     choices.Wisdom = {
         question:'In a world of magic, you would:',
@@ -27,22 +26,21 @@ function clickLvl1(e) {
         question:'In a battle of Vikings versus Ninjas, you would choose to be:',
         buttons: [
             {hash:'viking',label:'A Viking'},
-            {hash:'ninja',label:'A Ninja'},
+            {hash:'ninjas',label:'A Ninja'},
             {hash:'hire',label:'For Hire'}
         ]
     };
     var view = choices[choice];
     view.lvl = 2;
     $('#lvl2').html(Mustache.render($('#questiontpl').html(), view));
+    $('[data-mtgclass-lvl="2"]').on('click', clickLvl2)
 }
 function clickLvl2(e) {
     $('[data-mtgclass-lvl="2"]').removeClass('active');
     $(e.target).addClass('active');
     var pos = 1 + e.target.attributes.href.value.indexOf('#');
     var choice = e.target.attributes.href.value.substring(pos);
-    $('#lvl2').html(Mustache.render($('#questiontpl').html(), view));
     $('#lvl3').html('');
-    $('#lvl4').html('');
     var choices ={};
     choices.specialize = {
         question:'',
@@ -118,16 +116,32 @@ function clickLvl2(e) {
     };
     var view = choices[choice];
     view.lvl = 3;
-    $('#lvl3').html(Mustache.render($('#questiontpl').html(), view));
+    $('#lvl3').html(Mustache.render($('#classtpl').html(), view));
+    $('[data-mtgclass-lvl="3"]').on('click', clickLvl3)
 }
 function clickLvl3(e) {
     $('[data-mtgclass-lvl="3"]').removeClass('active');
     $(e.target).addClass('active');
-    view.lvl = 2;
-    $('#lvl2').html(Mustache.render($('#questiontpl').html(), view));
-}
+    var pos = 1 + e.target.attributes.href.value.indexOf('#');
+    var choice = e.target.attributes.href.value.substring(pos);
+    var choices ={};
+    choices.archer = {
+        description:'Combatants who specialize in fighting with bow and arrows.',
+        class:'Archer',
+        link:'http://gatherer.wizards.com/Pages/Search/Default.aspx?action=advanced&subtype=+%5B%22Archer%22%5D',
+    };
+    choices.samurai = {
+        description:'Elite warriors who have sworn their service and their lives to a single authority figure, usually a feudal lord.',
+        class:'Samurai',
+        link:'http://gatherer.wizards.com/Pages/Search/Default.aspx?action=advanced&subtype=+%5B%22Samurai%22%5D',
+    };
+    choices.ninja = {
+        description:'Masters of both stealth and armed combat who may find employment as spies, warriors, mercenaries and assassins.',
+        class:'Ninja',
+        link:'http://gatherer.wizards.com/Pages/Search/Default.aspx?action=advanced&subtype=+%5B%22Ninja%22%5D',
+    };
 
 // handlers
-$('[data-mtgclass-lvl="1"]').on('click', clickLvl1);
-$('[data-mtgclass-lvl="2"]').on('click', clickLvl2);
-$('[data-mtgclass-lvl="3"]').on('click', clickLvl3);
+    $('[data-mtgclass-lvl="1"]').on('click', clickLvl1);
+    $('[data-mtgclass-lvl="2"]').on('click', clickLvl2);
+    $('[data-mtgclass-lvl="3"]').on('click', clickLvl3);
