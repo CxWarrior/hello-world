@@ -1,3 +1,4 @@
+
 function clickLvl1(e) {
     $('[data-mtgclass-lvl="1"]').removeClass('active');
     $(e.target).addClass('active');
@@ -45,11 +46,11 @@ function clickLvl2(e) {
     $('#lvl4').html('');
     var choices ={};
     choices.specialize = {
-        question:'',
+        question:'You would focus on:',
         buttons: [
-            {hash:'',label:''},
-            {hash:'',label:''},
-            {hash:'',label:''}
+            {hash:'monk',label:'Your inner self'},
+            {hash:'artificer',label:'Machines'},
+            {hash:'advisor',label:'Advising others'}
         ]
     };
     choices.magic = {
