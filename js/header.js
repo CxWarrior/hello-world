@@ -1,6 +1,3 @@
-function myFunction() {
-    alert("Hello! I am an alert box!");
-}
 var template ='\
 <nav class="navbar navbar-inverse navbar-fixed-top">\
     <div class="container">\
