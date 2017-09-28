@@ -5,6 +5,7 @@ function clickLvl1(e) {
     var choice = e.target.attributes.href.value.substring(pos);
     $('#lvl2').html('');
     $('#lvl3').html('');
+    $('#lvl4').html('');
     var choices = {};
     choices.Wisdom = {
         question:'In a world of magic, you would:',
@@ -41,6 +42,7 @@ function clickLvl2(e) {
     var pos = 1 + e.target.attributes.href.value.indexOf('#');
     var choice = e.target.attributes.href.value.substring(pos);
     $('#lvl3').html('');
+    $('#lvl4').html('');
     var choices ={};
     choices.specialize = {
         question:'',
@@ -61,7 +63,7 @@ function clickLvl2(e) {
     choices.faith = {
         question:'',
         buttons: [
-            {hash:'',label:''},
+            {hash:'coward',label:'Hiding'},
             {hash:'',label:''},
             {hash:'',label:''}
         ]
@@ -116,30 +118,37 @@ function clickLvl2(e) {
     };
     var view = choices[choice];
     view.lvl = 3;
-    $('#lvl3').html(Mustache.render($('#classtpl').html(), view));
+    $('#lvl3').html(Mustache.render($('#questiontpl').html(), view));
     $('[data-mtgclass-lvl="3"]').on('click', clickLvl3)
 }
 function clickLvl3(e) {
     $('[data-mtgclass-lvl="3"]').removeClass('active');
     $(e.target).addClass('active');
+    $('#lvl4').html('');
     var pos = 1 + e.target.attributes.href.value.indexOf('#');
     var choice = e.target.attributes.href.value.substring(pos);
-    var choices ={};
+    var choices = {};
     choices.archer = {
-        description:'Combatants who specialize in fighting with bow and arrows.',
-        class:'Archer',
-        link:'http://gatherer.wizards.com/Pages/Search/Default.aspx?action=advanced&subtype=+%5B%22Archer%22%5D',
+        description: 'Combatants who specialize in fighting with bow and arrows.',
+        class: 'Archer',
     };
     choices.samurai = {
-        description:'Elite warriors who have sworn their service and their lives to a single authority figure, usually a feudal lord.',
-        class:'Samurai',
-        link:'http://gatherer.wizards.com/Pages/Search/Default.aspx?action=advanced&subtype=+%5B%22Samurai%22%5D',
+        description: 'Elite warriors who have sworn their service and their lives to a single authority figure, usually a feudal lord.',
+        class: 'Samurai'
     };
     choices.ninja = {
-        description:'Masters of both stealth and armed combat who may find employment as spies, warriors, mercenaries and assassins.',
-        class:'Ninja',
-        link:'http://gatherer.wizards.com/Pages/Search/Default.aspx?action=advanced&subtype=+%5B%22Ninja%22%5D',
+        description: 'Masters of both stealth and armed combat who may find employment as spies, warriors, mercenaries and assassins.',
+        class: 'Ninja'
     };
+    choices.coward = {
+        description:'you like to hide',
+        class:'Coward',
+        fullLink: 'http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=426608'
+    };
+    var view = choices[choice];
+    view.lvl = 4;
+    $('#lvl4').html(Mustache.render($('#classtpl').html(), view));
+}
 
 // handlers
     $('[data-mtgclass-lvl="1"]').on('click', clickLvl1);
