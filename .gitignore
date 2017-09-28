@@ -17,3 +17,5 @@ _book
 
 # ignore webstorm files
 .idea
+# ignore vagrant files
+.vagrant
