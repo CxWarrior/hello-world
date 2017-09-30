@@ -26,8 +26,8 @@ function clickLvl1(e) {
     choices.Power = {
         question:'In a battle of Vikings versus Ninjas, you would choose to be:',
         buttons: [
-            {hash:'viking',label:'A Viking'},
             {hash:'ninjas',label:'A Ninja'},
+            {hash:'viking',label:'A Viking'},
             {hash:'hire',label:'For Hire'}
         ]
     };
@@ -92,14 +92,6 @@ function clickLvl2(e) {
             {hash:'',label:''}
         ]
     };
-    choices.viking = {
-        question:'',
-        buttons: [
-            {hash:'',label:''},
-            {hash:'',label:''},
-            {hash:'',label:''}
-        ]
-    };
     choices.ninjas = {
         question:'Vikings attack you, you attack them:',
         buttons: [
@@ -108,12 +100,21 @@ function clickLvl2(e) {
             {hash:'archer',label:'From a distance'}
         ]
     };
-    choices.hire = {
-        question:'',
+    choices.viking = {
+        question:'Ninjas are about to attack, you:',
         buttons: [
+            {hash:'warrior',label:'Taunt them'},
+            {hash:'barbarian',label:'Improvise'},
+            {hash:'berserker',label:'Charge towards them'}
+        ]
+    };
+    choices.hire = {
+        question:'Your loyalty is to:',
+        buttons: [
+            {hash:'minion',label:'Your master'},
             {hash:'',label:''},
             {hash:'',label:''},
-            {hash:'',label:''}
+            {hash:'assassin',label:'The kill'}
         ]
     };
     var view = choices[choice];
@@ -140,8 +141,36 @@ function clickLvl3(e) {
         description: 'Masters of both stealth and armed combat who may find employment as spies, warriors, mercenaries and assassins.',
         class: 'Ninja'
     };
+    choices.warrior = {
+        description:'Elite combatants who fight alone or in loose hordes.',
+        class:'Warrior'
+    };
+    choices.barbarian = {
+        description:'Tough but unorganized fighters, usually from primitive and/or uncivilized cultures.',
+        class:''
+    };
+    choices.berserker = {
+        description:'Oafish combatants who enter a frenzy in battle, gaining great speed and battle prowess.',
+        class:'Berserker',
+    };
+    choices.minion = {
+        description:'Workers of the will of overtly evil forces or organizations.',
+        class:'Minion',
+    };
+    choices.mercenary = {
+        description:'Offensive individuals who sell their services in combat for money.',
+        class:'Mercenary',
+    };
+    choices.pirate = {
+        description:'Raucous fighters and scoundrels who sail the sea and skies to loot and plunder the unexpecting.',
+        class:'Pirate',
+    };
+    choices.assassin = {
+        description:'Killing specialists.',
+        class:'Assassin',
+    };
     choices.coward = {
-        description:'you like to hide',
+        description:'Those who lack courage in facing danger, difficulty, opposition or pain.',
         class:'Coward',
         fullLink: 'http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=426608'
     };
