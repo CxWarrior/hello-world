@@ -45,19 +45,19 @@ function clickLvl2(e) {
     $('#lvl4').html('');
     var choices ={};
     choices.specialize = {
-        question:'You would focus on:',
+        question:'',
         buttons: [
-            {hash:'monk',label:'Your inner self'},
-            {hash:'artificer',label:'Machines'},
-            {hash:'advisor',label:'Advising others'}
+            {hash:'',label:''},
+            {hash:'',label:''},
+            {hash:'',label:''}
         ]
     };
     choices.magic = {
-        question:'You would focus on:',
+        question:'',
         buttons: [
-            {hash:'wizard',label:'Mana magic'},
-            {hash:'shaman',label:'Ritual magic'},
-            {hash:'spellcaster',label:'Perfecting one specific spell'}
+            {hash:'',label:''},
+            {hash:'',label:''},
+            {hash:'',label:''}
         ]
     };
     choices.faith = {
@@ -112,8 +112,8 @@ function clickLvl2(e) {
         question:'Your loyalty is to:',
         buttons: [
             {hash:'minion',label:'Your master'},
-            {hash:'mercenary',label:'The highest bidder'},
-            {hash:'pirate',label:'Yourself'},
+            {hash:'',label:''},
+            {hash:'',label:''},
             {hash:'assassin',label:'The kill'}
         ]
     };
@@ -129,78 +129,6 @@ function clickLvl3(e) {
     var pos = 1 + e.target.attributes.href.value.indexOf('#');
     var choice = e.target.attributes.href.value.substring(pos);
     var choices = {};
-    choices.monk = {
-        description:'Individuals who have devoted their lives to quiet introspection and meditation, though many monks are skilled at magic, martial arts, or both.',
-        class:'Monk'
-    };
-    choices.artificer = {
-        description:'Machine enthusiasts who specialize in working with artifacts.',
-        class:'Artificer'
-    };
-    choices.advisor = {
-        description:'Advisors are tacticians, courtiers, ministers, and others known for their wisdom.',
-        class:'Advisor'
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices.ally = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
-    choices. = {
-        description:'',
-        class:''
-    };
     choices.archer = {
         description: 'Combatants who specialize in fighting with bow and arrows.',
         class: 'Archer',
