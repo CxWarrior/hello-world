@@ -97,9 +97,9 @@ function clickLvl2(e) {
     choices.ninjas = {
         question:'Vikings attack you, you attack them:',
         buttons: [
+            {hash:'archer',label:'From a distance'},
             {hash:'samurai',label:'In an honorable showdown'},
-            {hash:'ninja',label:'By sneaking upon them'},
-            {hash:'archer',label:'From a distance'}
+            {hash:'ninja',label:'By sneaking upon them'}
         ]
     };
     choices.viking = {
