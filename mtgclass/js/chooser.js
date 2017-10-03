@@ -243,11 +243,11 @@ function clickLvl3(e) {
     };
     choices.mercenary = {
         description:'Offensive individuals who sell their services in combat for money.',
-        class:'Mercenary',
+        class:'Mercenary'
     };
     choices.pirate = {
         description:'Raucous fighters and scoundrels who sail the sea and skies to loot and plunder the unexpecting.',
-        class:'Pirate',
+        class:'Pirate'
     };
     choices.assassin = {
         description:'Killing specialists, assassins do contracts just so that they have some money.',
