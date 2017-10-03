@@ -231,7 +231,7 @@ function clickLvl3(e) {
     };
     choices.barbarian = {
         description:'Tough but unorganized fighters, usually from primitive and/or uncivilized cultures.',
-        class:''
+        class:'Barbarian'
     };
     choices.berserker = {
         description:'Oafish combatants who enter a frenzy in battle, gaining great speed and battle prowess.',
