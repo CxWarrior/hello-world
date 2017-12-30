@@ -21,7 +21,7 @@ function init() {
     var fixDef = new b2FixtureDef;
     fixDef.density = 1.0;
     fixDef.friction = 0.5;
-    fixDef.restitution = 1.0;
+    fixDef.restitution = 0.9;
 
     var bodyDef = new b2BodyDef;
 
@@ -49,7 +49,8 @@ function init() {
 
     // peg definition
     fixDef.shape = new b2CircleShape(0.2);
-    // peg locations
+    // peg locations level 1
+    /*
     var pegs = [
         {x:2, y:18}
         ,{x:4, y:16}
@@ -63,28 +64,28 @@ function init() {
         ,{x:20, y:16}
         ,{x:22, y:18}
     ];
+    /* end level 1 */
+    // peg locations level 2
+    /* */
+    var pegs = [
+        {x:2, y:18}
+        ,{x:4, y:16}
+        ,{x:6, y:14}
+        ,{x:8, y:12}
+        ,{x:10, y:10}
+        ,{x:12, y:8}
+        ,{x:14, y:10}
+        ,{x:16, y:12}
+        ,{x:18, y:14}
+        ,{x:20, y:16}
+        ,{x:22, y:20}
+    ];
+    /* end level 2*/
+
+    // draw current level on the board
     for (var i = 0; i < pegs.length; i++) {
         bodyDef.position.x = pegs[i].x;
         bodyDef.position.y = pegs[i].y;
-        world.CreateBody(bodyDef).CreateFixture(fixDef);
-    }
-
-    //create some objects
-    bodyDef.type = b2Body.b2_dynamicBody;
-    for(var i = 0; i < 10; ++i) {
-        if(Math.random() > 0.5) {
-            fixDef.shape = new b2PolygonShape;
-            fixDef.shape.SetAsBox(
-                Math.random() + 0.1 //half width
-                ,  Math.random() + 0.1 //half height
-            );
-        } else {
-            fixDef.shape = new b2CircleShape(
-                Math.random() + 0.1 //radius
-            );
-        }
-        bodyDef.position.x = Math.random() * 10;
-        bodyDef.position.y = Math.random() * 10;
         world.CreateBody(bodyDef).CreateFixture(fixDef);
     }
 
@@ -109,3 +110,23 @@ function update() {
     world.DrawDebugData();
     world.ClearForces();
 };
+
+function dropball(e){
+    var fixDef = new Box2D.Dynamics.b2FixtureDef;
+    fixDef.density = 1.0;
+    fixDef.friction = 0.5;
+    fixDef.restitution = 0.9;
+    fixDef.shape = new Box2D.Collision.Shapes.b2CircleShape(0.2);
+    var bodyDef = new Box2D.Dynamics.b2BodyDef;
+    bodyDef.type = Box2D.Dynamics.b2Body.b2_dynamicBody;
+    bodyDef.position.x = e.offsetX * 30/1000 + 1.25;
+    bodyDef.position.y = 1;
+    world.CreateBody(bodyDef).CreateFixture(fixDef);
+}
+
+$(function(){
+    // on ready
+    $('#canvas').click(function(e){
+        dropball(e);
+    });
+});
