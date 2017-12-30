@@ -10,6 +10,7 @@ var template ='\
 <li class="{{#about}}active{{/about}}"><a href="/about.html">About</a></li>\
 <li class="{{#contact}}active{{/contact}}"><a href="/contact.html">Contact</a></li>\
 <li class="{{#mtgclass}}active{{/mtgclass}}"><a href="/mtgclass/index.html">Mtg Class Finder</a></li>\
+<li class="{{#jeffle}}active{{/jeffle}}"><a href="/jeffle.html">Jeffle</a></li>\
 </ul>\
 </div>\
 </div>\
