@@ -1,4 +1,4 @@
-var world, balls = [], pegs = [], maxBalls = 1, score = 0, lives = 30, level = 1;
+var world, balls = [], pegs = [], maxBalls = 1, score = 0, lives = 10, levelLives = lives, level = 1, skipLimit = 1.2, numLevels = 3;
 var debugContact = null;
 
 function init() {
@@ -58,6 +58,8 @@ function init() {
     otherBody.SetUserData({'wall':true});
 
     drawLevel();
+
+
 
     //setup debug draw
     var debugDraw = new b2DebugDraw();
@@ -121,10 +123,15 @@ function update() {
                 activePegs += 1;
             }
         }
+        for (i in balls) {
+            world.DestroyBody(balls[i].GetBody());
+        }
         // reset ball list
         balls = [];
         if (activePegs === 0) {
             level += 1;
+            score += lives; // 1 bonus point for each extra ball
+            lives = levelLives;
             drawLevel();
         } else {
             lives -= 1;
@@ -138,8 +145,8 @@ function update() {
 }
 
 function updatePage() {
-    $('#score').html(score);
-    $('#lives').html(lives);
+    $('#score').html("Score: " + score);
+    $('#lives').html("Lives: " + lives);
 }
 
 function dropball(e){
@@ -172,79 +179,100 @@ function restartLevel() {
         world.DestroyBody(peg.GetBody());
     }
     score = 0;
-    lives = 3;
+    lives = levelLives;
     balls = [];
     pegs = [];
     drawLevel();
     updatePage();
 }
 
+function nextLevel() {
+    var activePegs = 0, inactivePegs = 0;
+    if (balls.length > 0) {
+        return;
+    }
+    for (i in pegs) {
+        peg = pegs[i];
+        if (peg.GetBody().IsActive()) {
+            activePegs += 1;
+        } else {
+            inactivePegs += 1;
+        }
+    }
+    if(activePegs / (activePegs + inactivePegs) <= skipLimit) {
+        level += 1;
+        restartLevel();
+    }
+
+}
+
 function getPegsForCurrentLevel() {
 
     // peg locations level 1
     if (level === 1) {
-        return [{x:4, y:22}
-            ,{x:6, y:11}
-            ,{x:8, y:16}
-            ,{x:10, y:21.25}
-            ,{x:12, y:10.5}
-            ,{x:14, y:7}
-            ,{x:16, y:10.5}
-            ,{x:18, y:21.25}
-            ,{x:20, y:16}
-            ,{x:22, y:11}
-            ,{x:24, y:22}
-            ,{x:14, y:21.25}
-            ,{x:14, y:16}
-            ,{x:21.5, y:19}
-            ,{x:5.5, y:19}
-            ,{x:17, y:18}
-            ,{x:11, y:18}
-            ,{x:11, y:13}
-            ,{x:17, y:13}
+        return [{x: 4, y: 22}
+            , {x: 6, y: 11}
+            , {x: 8, y: 16}
+            , {x: 10, y: 21.25}
+            , {x: 12, y: 10.5}
+            , {x: 14, y: 7}
+            , {x: 16, y: 10.5}
+            , {x: 18, y: 21.25}
+            , {x: 20, y: 16}
+            , {x: 22, y: 11}
+            , {x: 24, y: 22}
+            , {x: 14, y: 21.25}
+            , {x: 14, y: 16}
+            , {x: 21.5, y: 19}
+            , {x: 5.5, y: 19}
+            , {x: 17, y: 18}
+            , {x: 11, y: 18}
+            , {x: 11, y: 13}
+            , {x: 17, y: 13}
         ];
     }
     // peg locations level 2
     if (level === 2) {
-        return [{x:6.5, y:25}
-            ,{x:6.5, y:17}
-            ,{x:9, y:19.75}
-            ,{x:6.5, y:13}
-            ,{x:10, y:10}
-            ,{x:12, y:15}
-            ,{x:14, y:10}
-            ,{x:16.5, y:13}
-            ,{x:15, y:19.75}
-            ,{x:16.5, y:17}
-            ,{x:18.5, y:25}
-            ,{x:17 ,y:22}
-            ,{x:17, y:15}
-            ,{x:13, y:25}
-            ,{x:12, y:17}
-            ,{x:16, y:11.5}
-            ,{x:12, y:13}
-            ,{x:14, y:15}
-            ,{x:10, y:15}
-            ,{x:8, y:11}
-            ,{x:6, y:15}
-            ,{x:7.5, y:19}
-            ,{x:8, y:22}
+        return [{x: 6.5, y: 25}
+            , {x: 6.5, y: 17}
+            , {x: 9, y: 19.75}
+            , {x: 6.5, y: 13}
+            , {x: 10, y: 10}
+            , {x: 12, y: 15}
+            , {x: 14, y: 10}
+            , {x: 16.5, y: 13}
+            , {x: 15, y: 19.75}
+            , {x: 16.5, y: 17}
+            , {x: 18.5, y: 25}
+            , {x: 17, y: 22}
+            , {x: 17, y: 15}
+            , {x: 13, y: 25}
+            , {x: 12, y: 17}
+            , {x: 16, y: 11.5}
+            , {x: 12, y: 13}
+            , {x: 14, y: 15}
+            , {x: 10, y: 15}
+            , {x: 8, y: 11}
+            , {x: 6, y: 15}
+            , {x: 7.5, y: 19}
+            , {x: 8, y: 22}
         ];
     }
-    return [{x:7, y:22.5}
-        ,{x:6, y:18.5}
-        ,{x:7.5, y:15}
-        ,{x:9, y:12}
-        ,{x:11, y:9}
-        ,{x:12, y:6}
-        ,{x:13, y:9}
-        ,{x:15, y:12}
-        ,{x:16.75, y:15}
-        ,{x:18, y:18.5}
-        ,{x:17, y:22.5}
-        ,{x:12, y:26}
-        ,{x:15, y:25}
-        ,{x:9, y:25}
+
+    return [{x: 7, y: 22.5}
+        , {x: 6, y: 18.5}
+        , {x: 7.5, y: 15}
+        , {x: 9, y: 12}
+        , {x: 11, y: 9}
+        , {x: 12, y: 6}
+        , {x: 13, y: 9}
+        , {x: 15, y: 12}
+        , {x: 16.75, y: 15}
+        , {x: 18, y: 18.5}
+        , {x: 17, y: 22.5}
+        , {x: 12, y: 26}
+        , {x: 15, y: 25}
+        , {x: 9, y: 25}
     ];
 }
 
@@ -267,6 +295,10 @@ function drawLevel() {
     // peg definition
     fixDef.shape = new b2CircleShape(0.4); // size of peg
 
+    if (level > numLevels) {
+        level = 1;
+    }
+
     pegCoords = getPegsForCurrentLevel();
 
     // draw current level on the board
@@ -286,5 +318,8 @@ $(function(){
     });
     $('#restart').click(function(e) {
         restartLevel();
+    });
+    $('#next').click(function(e) {
+        nextLevel();
     });
 });
